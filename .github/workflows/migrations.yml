@@ -1,0 +1,26 @@
+name: DB Migrations
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ ./typeorm-migrations/migrations ]
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16'
+            cache: 'npm'
+      - name: Install dependencies
+        working-directory: ./typeorm-migrations
+        run: npm ci
+
+      - name: Run migration script
+        working-directory: ./typeorm-migrations
+        run: npm run migrations:run:dev
