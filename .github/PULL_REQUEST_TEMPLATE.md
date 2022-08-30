@@ -5,7 +5,7 @@
 
 ## What did you implement:
 
-Closes [#XXXXX](https://virtuepoker.atlassian.net/browse/#XXXXX)
+Closes [#XXXXX](https://podpoint.atlassian.net/browse/#XXXXX)
 
 <!--
 Briefly describe the feature if no issue exists for this PR
@@ -40,7 +40,5 @@ Examples:
 - [ ] Provide verification config / commands / resources
 - [ ] Update the messages below
 
-***In which stage has it been tested?:*** backdev/dev
-***Link to evidences (Cloudwatch logs, etc.)***: [changeme](https://eu-west-1.console.aws.amazon.com/cloudwatch...)
 ***Is this ready for review?:*** NO
 ***Is it a breaking change?:*** NO
