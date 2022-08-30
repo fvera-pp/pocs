@@ -2,8 +2,10 @@ name: DB Migrations
 
 on:
   push:
-    branches: [ main ]
-    paths: [ ./typeorm-migrations/migrations ]
+    branches:
+      - master
+    paths: 
+      - typeorm-migrations/migrations/**
 
 jobs:
   migrate:
