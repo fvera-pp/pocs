@@ -23,3 +23,15 @@ jobs:
           on-succeeded-regex-dismiss-review-comment:
             "This is just an example. Success!"
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            migrations:
+              - 'typeorm-migrations/migrations/**'
+    # run only if some file in 'migrations' folder was changed
+      - if: steps.changes.outputs.migrations == 'true'
+        run: npm run migrations:run:dev
