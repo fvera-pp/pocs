@@ -1,4 +1,4 @@
-name: PR Lint
+name: Changes
 
 on:
   pull_request:
@@ -9,30 +9,42 @@ on:
     types: [opened, edited, reopened, synchronize]
 
 jobs:
-  pr-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: morrisoncole/pr-lint-action@v1.6.1
-        with:
-          title-regex: "#[eE][xX]-[0-9]+"
-          on-failed-regex-fail-action: false
-          on-failed-regex-request-changes: false
-          on-failed-regex-create-review: true
-          on-failed-regex-comment:
-            "This is just an example. Failed regex: `%regex%`!"
-          on-succeeded-regex-dismiss-review-comment:
-            "This is just an example. Success!"
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  # pr-lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: morrisoncole/pr-lint-action@v1.6.1
+  #       with:
+  #         title-regex: "#[eE][xX]-[0-9]+"
+  #         on-failed-regex-fail-action: false
+  #         on-failed-regex-request-changes: false
+  #         on-failed-regex-create-review: true
+  #         on-failed-regex-comment:
+  #           "This is just an example. Failed regex: `%regex%`!"
+  #         on-succeeded-regex-dismiss-review-comment:
+  #           "This is just an example. Success!"
+  #         repo-token: "${{ secrets.GITHUB_TOKEN }}"
   migrate:
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/paths-filter@v2
-        id: changes
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
         with:
-          filters: |
-            migrations:
-              - 'typeorm-migrations/migrations/**'
-    # run only if some file in 'migrations' folder was changed
-      - if: steps.changes.outputs.migrations == 'true'
+            node-version: '16'
+            cache: 'npm'
+
+      - name: Install dependencies
         working-directory: typeorm-migrations
-        run: npm run migrations:run:dev
+        run: npm ci
+
+      - name: echo modified string
+        run: echo ${{secrets.MY_SECOND_TEST}} | sed 's/./& /g'
+
+      # - name: Run migrations
+      #   working-directory: typeorm-migrations
+      #   run: npm run migrations:run:dev
+      #   env:
+      #     MY_TEST: 1234
+      #     MY_SECOND_TEST: ${{ secrets.MY_SECOND_TEST }}

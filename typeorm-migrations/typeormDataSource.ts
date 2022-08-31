@@ -1,7 +1,7 @@
 import "reflect-metadata"
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV || 'local'}` })
 import { DataSource, DataSourceOptions } from 'typeorm';
-console.log(process.env.MY_TEST)
+console.log(JSON.stringify(process.env))
 const options = {
     type: "postgres",
     host: process.env.DB_WRITE_ENDPOINT,
