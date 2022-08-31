@@ -34,4 +34,5 @@ jobs:
               - 'typeorm-migrations/migrations/**'
     # run only if some file in 'migrations' folder was changed
       - if: steps.changes.outputs.migrations == 'true'
+        working-directory: ./typeorm-migrations
         run: npm run migrations:run:dev

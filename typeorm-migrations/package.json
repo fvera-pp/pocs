@@ -11,7 +11,6 @@
       "typeorm": "0.3.7"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
       "migration:create": "./migration-create.sh",
       "migrations:run:local": "NODE_ENV=local typeorm-ts-node-commonjs -d typeormDataSource.ts migration:run",
       "migrations:run:dev": "NODE_ENV=dev typeorm-ts-node-commonjs -d typeormDataSource.ts migration:run"
