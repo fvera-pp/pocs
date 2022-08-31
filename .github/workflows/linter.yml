@@ -39,6 +39,11 @@ jobs:
         working-directory: typeorm-migrations
         run: npm ci
 
+      - uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+      - run: node -e "console.log(process.env.MY_SECRET1)"
+
       - uses: dorny/paths-filter@v2
         id: changes
         with:
