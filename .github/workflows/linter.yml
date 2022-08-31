@@ -41,8 +41,8 @@ jobs:
 
       - name: Run migrations
         working-directory: typeorm-migrations
-        run: npm run migrations:run:dev
         with: # Set the secret as an input
           MY_TEST: ${{ secrets.MY_TEST }}
         env:
           MY_TEST: ${{ secrets.MY_TEST }}
+        run: npm run migrations:run:dev
