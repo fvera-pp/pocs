@@ -49,6 +49,7 @@ jobs:
       - if: steps.changes.outputs.migrations == 'true'
         working-directory: typeorm-migrations
         run: npm run migrations:run:dev
+        with: # Set the secret as an input
+          MY_TEST: ${{ secrets.MY_TEST }}
         env:
           MY_TEST: ${{ secrets.MY_TEST }}
-          
