@@ -1,8 +1,9 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class migrations1661791920115 implements MigrationInterface {
+export class TestMigration1661857921425 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+console.log('up')
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
