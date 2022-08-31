@@ -7,8 +7,7 @@ on:
     #
     # Possible values: https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
     types: [opened, edited, reopened, synchronize]
-env:
-  MY_TEST: ${{ secrets.MY_TEST }}
+
 jobs:
   # pr-lint:
   #   runs-on: ubuntu-latest
@@ -43,3 +42,6 @@ jobs:
       - name: Run migrations
         working-directory: typeorm-migrations
         run: npm run migrations:run:dev
+        env:
+          MY_TEST: 1234
+          MY_SECOND_TEST: ${{ secrets.MY_SECOND_TEST }}
