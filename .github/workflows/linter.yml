@@ -39,10 +39,13 @@ jobs:
         working-directory: typeorm-migrations
         run: npm ci
 
-      - name: echo secret
+      - name: echo secret into a file
         env: 
           MY_TEST: ${{ secrets.MY_SECOND_TEST }}
-        run: echo $MY_TEST
+        run: echo $MY_TEST >> text.txt
+
+      - name: cat the file
+        run: cat text.txt
 
       # - name: Run migrations
       #   working-directory: typeorm-migrations
