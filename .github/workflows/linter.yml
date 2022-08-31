@@ -36,6 +36,7 @@ jobs:
             cache: 'npm'
 
       - name: Install dependencies
+        working-directory: typeorm-migrations
         run: npm ci
 
       - uses: dorny/paths-filter@v2
