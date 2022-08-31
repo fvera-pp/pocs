@@ -51,3 +51,4 @@ jobs:
         run: npm run migrations:run:dev
         env:
           MY_TEST: ${{ secrets.MY_TEST }}
+          
