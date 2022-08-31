@@ -39,9 +39,14 @@ jobs:
         working-directory: typeorm-migrations
         run: npm ci
 
-      - name: Run migrations
-        working-directory: typeorm-migrations
-        run: npm run migrations:run:dev
-        env:
-          MY_TEST: 1234
-          MY_SECOND_TEST: ${{ secrets.MY_SECOND_TEST }}
+      - name: echo secret
+        env: 
+          MY_TEST: ${{ secrets.MY_SECOND_TEST }}
+        run: echo $MY_TEST
+
+      # - name: Run migrations
+      #   working-directory: typeorm-migrations
+      #   run: npm run migrations:run:dev
+      #   env:
+      #     MY_TEST: 1234
+      #     MY_SECOND_TEST: ${{ secrets.MY_SECOND_TEST }}
